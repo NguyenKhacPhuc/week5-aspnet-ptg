@@ -4,7 +4,7 @@ namespace OderApp.DataSource
 {
     public interface FileJsonHandler
     {
-        Task wirteFile<TValue>(string filePath, TValue data);
+        Task writeFile<TValue>(string filePath, TValue data);
         Task<TValue> readFile<TValue>(string filePath);
     }
     public class FileJsonHandlerImpl : FileJsonHandler
@@ -18,7 +18,7 @@ namespace OderApp.DataSource
             return value;
         }
 
-        public async Task wirteFile<TValue>(string filePath, TValue data)
+        public async Task writeFile<TValue>(string filePath, TValue data)
         {
             using FileStream createStream = File.Create(filePath);
             await JsonSerializer.SerializeAsync(createStream, data);
