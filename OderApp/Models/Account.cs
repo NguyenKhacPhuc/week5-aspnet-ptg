@@ -2,11 +2,11 @@
 {
     public class Account
     {
-        public Account(string email, string password, int decentralization)
+        public Account(string email, string password, string role)
         {
             Email = email;
             Password = password;
-            Decentralization = decentralization;
+            Role = role;
         }
 
         public Account()
@@ -15,6 +15,6 @@
         }
         public string Email { get; set; }
         public string Password { get; set; }
-        public int Decentralization { get; set; }
+        public string Role { get; set; }
     }
 }

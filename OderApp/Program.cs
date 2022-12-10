@@ -13,14 +13,17 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 //Add Repository Depedency
 builder.Services.AddScoped<IAccountRepository, AccountRepositoryImpl>();
+builder.Services.AddScoped<IConfigurationRepository, ConfigurationRepositoryImpl>();
 
 // Add Service Depedency
 builder.Services.AddScoped<LoginService, LoginServiceImpl>();
+builder.Services.AddScoped<ConfigurationService, ConfigurationServiceImpl>();
 
 builder.Services.AddScoped<FileJsonHandler, FileJsonHandlerImpl>();
 //Add DAO Depedency
 builder.Services.AddScoped<AccountDao, AccountDaoImpl>();
 builder.Services.AddScoped<MenuDao, MenuDaoImpl>();
+builder.Services.AddScoped<ConfigurationDao, ConfigurationDaoImpl>();
 
 
 var app = builder.Build();

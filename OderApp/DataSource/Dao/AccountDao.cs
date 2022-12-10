@@ -48,7 +48,7 @@ namespace OderApp.DataSource.Dao
         {
             List<AccountEntity> accounts = await _fileJsonHandler.readFile<List<AccountEntity>>(STORE_PATH_FILE);
             accounts.Add(data);
-            await _fileJsonHandler.wirteFile(STORE_PATH_FILE, accounts);
+            await _fileJsonHandler.writeFile(STORE_PATH_FILE, accounts);
         }
 
         public async Task Update(AccountEntity data)
@@ -57,7 +57,7 @@ namespace OderApp.DataSource.Dao
             var found = accounts.FirstOrDefault(item => item.Id == data.Id);
             found = data;
 
-            await _fileJsonHandler.wirteFile(STORE_PATH_FILE, accounts);
+            await _fileJsonHandler.writeFile(STORE_PATH_FILE, accounts);
 
         }
         
