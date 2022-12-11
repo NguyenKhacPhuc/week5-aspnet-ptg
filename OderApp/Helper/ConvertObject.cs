@@ -15,5 +15,10 @@ namespace OderApp.Helper
             return new Configuration(configurationEntity.Policy, configurationEntity.Rules, configurationEntity.Address);
 
         }
+
+        public static MenuItem ConvertToMenuItem(this MenuItemEntity menuItemEntity)
+        {
+            return new MenuItem(menuItemEntity.Id, menuItemEntity.Name, menuItemEntity.Price, Enum.GetName(typeof(Category), menuItemEntity.Category).ToLower());
+        }
     }
 }

@@ -1,15 +1,19 @@
 ﻿
 using OderApp.DataSource.Entities;
+using OderApp.Helper;
 
 namespace OderApp.DataSource.Dao
 {
     public interface MenuDao
     {
-        public Task Insert(MenuEntity data);
-        public Task<List<MenuEntity>> GetAll();
-        public Task Update(MenuEntity data);
+        public Task Insert(MenuItemEntity data);
+        public Task<List<MenuItemEntity>> GetAll();
+        public Task Update(MenuItemEntity data);
         public Task Delete(string id);
+        public Task<List<MenuItemEntity>> GetMenuByCategory(int category);
+
     }
+
 
     public class MenuDaoImpl : MenuDao
     {
@@ -23,24 +27,30 @@ namespace OderApp.DataSource.Dao
             throw new NotImplementedException();
         }
 
-        public Task<MenuEntity> Get(string id)
+        public Task<MenuItemEntity> Get(string id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<MenuEntity>> GetAll()
+        public async Task<List<MenuItemEntity>> GetAll()
+        {
+            return await _fileJsonHandler.readFile<List<MenuItemEntity>>(Constant.MENU_STORE_PATH_FILE);
+        }
+
+        public Task Insert(MenuItemEntity data)
         {
             throw new NotImplementedException();
         }
 
-        public Task Insert(MenuEntity data)
+        public Task Update(MenuItemEntity data)
         {
             throw new NotImplementedException();
         }
 
-        public Task Update(MenuEntity data)
+        public async Task<List<MenuItemEntity>> GetMenuByCategory(int category)
         {
-            throw new NotImplementedException();
+            var menu = await GetAll();
+            return menu.FindAll(menuItem => menuItem.Category == category);
         }
     }
 }
