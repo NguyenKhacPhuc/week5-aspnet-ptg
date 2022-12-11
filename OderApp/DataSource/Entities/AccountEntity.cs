@@ -2,6 +2,12 @@
 {
     public class AccountEntity
     {
+        public AccountEntity(string email, string password, int decentralization)
+        {
+            Email = email;
+            Password = password;
+            Decentralization = decentralization;
+        }
 
         public int Id { get; set; }
 

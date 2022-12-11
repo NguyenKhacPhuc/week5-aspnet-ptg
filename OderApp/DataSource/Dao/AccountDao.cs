@@ -5,7 +5,7 @@ namespace OderApp.DataSource.Dao
 
   public interface AccountDao
     {
-        public  Task Insert(AccountEntity data);
+        public Task Insert(AccountEntity data);
         public Task<List<AccountEntity>> GetAll();
         public Task Update(AccountEntity data);
         public Task Delete(string id);
