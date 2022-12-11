@@ -21,7 +21,7 @@ builder.Services.AddScoped<IOrderRepository, OrderRepositoryImpl>();
 builder.Services.AddScoped<LoginService, LoginServiceImpl>();
 builder.Services.AddScoped<ConfigurationService, ConfigurationServiceImpl>();
 builder.Services.AddScoped<ICustomerService, CustomerServiceImpl>();
-
+builder.Services.AddScoped<RegisterService, RegisterServiceImpl>();
 
 builder.Services.AddScoped<FileJsonHandler, FileJsonHandlerImpl>();
 //Add DAO Depedency

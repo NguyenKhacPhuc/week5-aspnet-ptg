@@ -1,6 +1,6 @@
 ﻿namespace OderApp.DataSource.Entities
 {
-    public class MenuItemEntity
+    public class ItemEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }

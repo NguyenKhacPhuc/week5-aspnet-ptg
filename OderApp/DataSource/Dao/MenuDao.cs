@@ -6,11 +6,11 @@ namespace OderApp.DataSource.Dao
 {
     public interface MenuDao
     {
-        public Task Insert(MenuItemEntity data);
-        public Task<List<MenuItemEntity>> GetAll();
-        public Task Update(MenuItemEntity data);
+        public Task Insert(ItemEntity data);
+        public Task<List<ItemEntity>> GetAll();
+        public Task Update(ItemEntity data);
         public Task Delete(string id);
-        public Task<List<MenuItemEntity>> GetMenuByCategory(int category);
+        public Task<List<ItemEntity>> GetMenuByCategory(int category);
 
     }
 
@@ -27,27 +27,27 @@ namespace OderApp.DataSource.Dao
             throw new NotImplementedException();
         }
 
-        public Task<MenuItemEntity> Get(string id)
+        public Task<ItemEntity> Get(string id)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<List<MenuItemEntity>> GetAll()
+        public async Task<List<ItemEntity>> GetAll()
         {
-            return await _fileJsonHandler.readFile<List<MenuItemEntity>>(Constant.MENU_STORE_PATH_FILE);
+            return await _fileJsonHandler.readFile<List<ItemEntity>>(Constant.MENU_STORE_PATH_FILE);
         }
 
-        public Task Insert(MenuItemEntity data)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task Update(MenuItemEntity data)
+        public Task Insert(ItemEntity data)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<List<MenuItemEntity>> GetMenuByCategory(int category)
+        public Task Update(ItemEntity data)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<List<ItemEntity>> GetMenuByCategory(int category)
         {
             var menu = await GetAll();
             return menu.FindAll(menuItem => menuItem.Category == category);

@@ -5,8 +5,8 @@ namespace OderApp.DataSource.Dao
 {
     public interface IOrderDao
     {
-        public Task<List<MenuItemEntity>> GetOrderedItemsByAccountId(int accountId);
-        public Task<List<MenuItemEntity>> OrderItems(List<OrderItem> orderItems, int acccountId);
+        public Task<List<ItemEntity>> GetOrderedItemsByAccountId(int accountId);
+        public Task<List<ItemEntity>> OrderItems(List<OrderItem> orderItems, int acccountId);
     }
 
     public class OrderDaoImpl : IOrderDao
@@ -19,7 +19,7 @@ namespace OderApp.DataSource.Dao
             _fileJsonHandler = fileJsonHandler;
             _menuDao = menuDao;
         }
-        public async Task<List<MenuItemEntity>> GetOrderedItemsByAccountId(int accountId)
+        public async Task<List<ItemEntity>> GetOrderedItemsByAccountId(int accountId)
         {
             var orderStorage = await GetAllOrderEntity();
             var orderItems = orderStorage.Find(oderEntity => oderEntity.AccountId == accountId).OrderItems;
@@ -31,10 +31,10 @@ namespace OderApp.DataSource.Dao
                             .ToList().
                             Contains(menuEntity.Id));
             }
-            return new List<MenuItemEntity>();
+            return new List<ItemEntity>();
         }
 
-        public async Task<List<MenuItemEntity>> OrderItems(List<OrderItem> orderItems, int acccountId)
+        public async Task<List<ItemEntity>> OrderItems(List<OrderItem> orderItems, int acccountId)
         {
             var orderStorage = await GetAllOrderEntity();
             var orderEntity = orderStorage.Find(orderEntity => orderEntity.AccountId == acccountId);

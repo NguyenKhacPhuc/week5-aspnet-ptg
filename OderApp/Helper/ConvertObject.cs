@@ -16,7 +16,7 @@ namespace OderApp.Helper
 
         }
 
-        public static MenuItem ConvertToMenuItem(this MenuItemEntity menuItemEntity)
+        public static MenuItem ConvertToMenuItem(this ItemEntity menuItemEntity)
         {
             return new MenuItem(menuItemEntity.Id, menuItemEntity.Name, menuItemEntity.Price, Enum.GetName(typeof(Category), menuItemEntity.Category).ToLower());
         }

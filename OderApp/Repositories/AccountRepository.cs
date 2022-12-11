@@ -7,6 +7,7 @@ namespace OderApp.Repositories
     public interface IAccountRepository
     {
         public Task<AccountEntity?> getAccount(string email, string password);
+        public Task addAccount(string email, string password, string role);
     }
     public class AccountRepositoryImpl : IAccountRepository
     {
@@ -16,6 +17,12 @@ namespace OderApp.Repositories
         {
             _accountDao = accountDao;
         }
+
+        public Task addAccount(string email, string password, string role)
+        {
+            return _accountDao.Insert(new AccountEntity(email, password, role));
+        }
+
         public async Task<AccountEntity?> getAccount(string email, string password)
         {
             return await _accountDao.GetAccount(email, password);

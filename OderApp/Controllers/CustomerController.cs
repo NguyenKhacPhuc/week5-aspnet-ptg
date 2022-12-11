@@ -8,17 +8,17 @@ namespace OderApp.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class OrderController : ControllerBase
+    public class CustomerController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
         {
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     };
 
-        private readonly ILogger<OrderController> _logger;
+        private readonly ILogger<CustomerController> _logger;
         private readonly ICustomerService _customerService;
 
-        public OrderController(ILogger<OrderController> logger, ICustomerService customerService)
+        public CustomerController(ILogger<CustomerController> logger, ICustomerService customerService)
         {
             _logger = logger;
             _customerService = customerService;

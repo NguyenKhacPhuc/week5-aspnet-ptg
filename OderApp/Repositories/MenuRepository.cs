@@ -5,8 +5,8 @@ namespace OderApp.Repositories
 {
     public interface IMenuRepository
     {
-        public Task<List<MenuItemEntity>> GetAll();
-        public Task<List<MenuItemEntity>> GetMenuByCategory(int category);
+        public Task<List<ItemEntity>> GetAll();
+        public Task<List<ItemEntity>> GetMenuByCategory(int category);
     }
 
     public class MenuRepositoryImpl : IMenuRepository
@@ -16,12 +16,12 @@ namespace OderApp.Repositories
         {
             _menuDao = menuDao;
         }
-        public async Task<List<MenuItemEntity>> GetAll()
+        public async Task<List<ItemEntity>> GetAll()
         {
             return await _menuDao.GetAll();
         }
 
-        public async Task<List<MenuItemEntity>> GetMenuByCategory(int category)
+        public async Task<List<ItemEntity>> GetMenuByCategory(int category)
         {
             return await _menuDao.GetMenuByCategory(category);
         }
