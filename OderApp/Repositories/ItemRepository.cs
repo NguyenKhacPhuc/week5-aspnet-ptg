@@ -1,0 +1,50 @@
+﻿using System;
+using OderApp.DataSource.Dao;
+using OderApp.DataSource.Entities;
+using OderApp.Models;
+using OderApp.Repositories;
+
+namespace OderApp.Repositories
+{
+    public interface IItemRepository
+    {
+        public Task<List<ItemEntity>> GetAllItem();
+
+        public Task<ItemEntity?> UpdateItem(ItemEntity item);
+
+        public Task<ItemEntity?> DeleteItem(string itemId);
+
+        public Task<ItemEntity?> AddItem(ItemEntity item);
+    }
+
+    public class ItemRepositoryImpl : IItemRepository
+    {
+        private readonly ItemDao _itemDao;
+
+        public ItemRepositoryImpl(ItemDao itemDao)
+        {
+            _itemDao = itemDao;
+        }
+
+        public async Task<ItemEntity?> AddItem(ItemEntity item)
+        {
+            return await _itemDao.Insert(item);
+        }
+
+        public async Task<ItemEntity?> DeleteItem(string itemId)
+        {
+            return await _itemDao.Delete(itemId);
+        }
+
+        public async Task<List<ItemEntity>> GetAllItem()
+        {
+            return await _itemDao.GetAll();
+        }
+
+        public async Task<ItemEntity?> UpdateItem(ItemEntity item)
+        {
+            return await _itemDao.Update(item);
+        }
+    }
+}
+
