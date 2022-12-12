@@ -14,10 +14,13 @@ builder.Services.AddSwaggerGen();
 //Add Repository Depedency
 builder.Services.AddScoped<IAccountRepository, AccountRepositoryImpl>();
 builder.Services.AddScoped<IConfigurationRepository, ConfigurationRepositoryImpl>();
+builder.Services.AddScoped<IMenuRepository, MenuRepositoryImpl>();
+builder.Services.AddScoped<IOrderRepository, OrderRepositoryImpl>();
 
 // Add Service Depedency
 builder.Services.AddScoped<LoginService, LoginServiceImpl>();
 builder.Services.AddScoped<ConfigurationService, ConfigurationServiceImpl>();
+builder.Services.AddScoped<ICustomerService, CustomerServiceImpl>();
 builder.Services.AddScoped<RegisterService, RegisterServiceImpl>();
 
 builder.Services.AddScoped<FileJsonHandler, FileJsonHandlerImpl>();
@@ -25,6 +28,7 @@ builder.Services.AddScoped<FileJsonHandler, FileJsonHandlerImpl>();
 builder.Services.AddScoped<AccountDao, AccountDaoImpl>();
 builder.Services.AddScoped<MenuDao, MenuDaoImpl>();
 builder.Services.AddScoped<ConfigurationDao, ConfigurationDaoImpl>();
+builder.Services.AddScoped<IOrderDao, OrderDaoImpl>();
 
 
 var app = builder.Build();

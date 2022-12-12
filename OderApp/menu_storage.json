@@ -1,0 +1,38 @@
+[
+  {
+    "Id": 1,
+    "Name": "Food 1",
+    "Price": 18.98,
+    "Category": 0
+  },
+  {
+    "Id": 2,
+    "Name": "Food 2",
+    "Price": 20.00,
+    "Category": 0
+  },
+  {
+    "Id": 3,
+    "Name": "Food 3",
+    "Price": 10.7,
+    "Category": 0
+  },
+  {
+    "Id": 4,
+    "Name": "Drinks 1",
+    "Price": 18.98,
+    "Category": 1
+  },
+  {
+    "Id": 5,
+    "Name": "Drinks 2",
+    "Price": 20.00,
+    "Category": 1
+  },
+  {
+    "Id": 6,
+    "Name": "Drinks 3",
+    "Price": 10.7,
+    "Category": 1
+  }
+]
