@@ -15,6 +15,7 @@ namespace OderApp.Controllers
 
         public RegisterController(ILogger<RegisterController> logger, RegisterService registerService)
         {
+
             _logger = logger;
             _registerService = registerService;
         }
