@@ -12,7 +12,7 @@ namespace OderApp.DataSource.Dao
         public Task<AccountEntity?> GetAccount(string email, string password);
     }
 
-    public class AccountDaoImpl : AccountDao
+    public class AccountDaoImpl:AccountDao
     {
         private const string STORE_PATH_FILE = @"D:\InputPackageManagerTestData1.json";
 
