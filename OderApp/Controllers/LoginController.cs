@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using OderApp.Models;
 using OderApp.Services;
 using System.Net;
+using InvalidOperationException = System.InvalidOperationException;
 
 namespace OderApp.Controllers
 {
@@ -9,10 +10,6 @@ namespace OderApp.Controllers
     [Route("[controller]")]
     public class LoginController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
 
         private readonly ILogger<LoginController> _logger;
         private readonly LoginService _loginService;
@@ -31,7 +28,7 @@ namespace OderApp.Controllers
             Account account = new Account();
             if (result.StatusCode == HttpStatusCode.OK)
             {
-                account = result.Data;
+                account = result.Data ?? throw new InvalidOperationException();
             }
 
             return account;

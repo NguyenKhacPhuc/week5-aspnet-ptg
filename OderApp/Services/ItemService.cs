@@ -1,8 +1,6 @@
-﻿using System;
-using OderApp.Helper;
+﻿using OderApp.Helper;
 using OderApp.Models;
 using OderApp.Repositories;
-using OderApp.Services;
 
 namespace OderApp.Services
 {
@@ -28,24 +26,29 @@ namespace OderApp.Services
 
         public async Task<Item?> AddItem(Item item)
         {
-            return (await _itemRepository.AddItem(item.ConvertToItemEntity())).ConvertToItem();
+            return (await _itemRepository.AddItem(item.ConvertToItemEntity()) ??
+                    throw new InvalidOperationException())
+                .ConvertToItemModel();
         }
 
         public async Task<Item?> DeleteItem(string itemId)
         {
-            return (await _itemRepository.DeleteItem(itemId)).ConvertToItem();
+            return (await _itemRepository.DeleteItem(itemId) ??
+                    throw new InvalidOperationException())
+                .ConvertToItemModel();
         }
 
         public async Task<List<Item>> GetAllItem()
         {
-            var listItem = (await _itemRepository.GetAllItem()).ConvertAll(item => item.ConvertToItem());
-            listItem.RemoveAll(item => item == null);
+            var listItem = (await _itemRepository.GetAllItem()).ConvertAll(item => item.ConvertToItemModel());
             return listItem;
         }
 
         public async Task<Item?> UpdateItem(Item item)
         {
-            return (await _itemRepository.UpdateItem(item.ConvertToItemEntity())).ConvertToItem();
+            return (await _itemRepository.UpdateItem(item.ConvertToItemEntity()) ??
+                    throw new InvalidOperationException())
+                .ConvertToItemModel();
         }
     }
 }

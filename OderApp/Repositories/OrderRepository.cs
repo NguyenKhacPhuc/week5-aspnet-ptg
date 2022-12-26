@@ -5,8 +5,8 @@ namespace OderApp.Repositories
 {
     public interface IOrderRepository
     {
-        public Task<List<MenuItemEntity>> GetOrderedItemsByAccountId(int accountId);
-        public Task<List<MenuItemEntity>> OrderItems(List<OrderItem> orderItems, int accountId);
+        public Task<List<ItemEntity>> GetOrderedItemsByAccountId(int accountId);
+        public Task<List<ItemEntity>> OrderItems(List<OrderItem> orderItems, int accountId);
     }
 
     public class OrderRepositoryImpl : IOrderRepository
@@ -16,12 +16,12 @@ namespace OderApp.Repositories
         {
             _orderDao = orderDao;
         }
-        public async Task<List<MenuItemEntity>> GetOrderedItemsByAccountId(int accountId)
+        public async Task<List<ItemEntity>> GetOrderedItemsByAccountId(int accountId)
         {
             return await _orderDao.GetOrderedItemsByAccountId(accountId);
         }
 
-        public async Task<List<MenuItemEntity>> OrderItems(List<OrderItem> orderItems, int accountId)
+        public async Task<List<ItemEntity>> OrderItems(List<OrderItem> orderItems, int accountId)
         {
             return await _orderDao.OrderItems(orderItems, accountId);
         }

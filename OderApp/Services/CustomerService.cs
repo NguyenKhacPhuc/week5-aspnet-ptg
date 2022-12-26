@@ -8,11 +8,11 @@ namespace OderApp.Services
 
     public interface ICustomerService
     {
-        public Task<List<MenuItem>> GetMenu();
-        public Task<List<MenuItem>> GetMenuByCategory(string category);
-        public Task<List<MenuItem>> GetOrderedItemsByAccountId(int accountId);
+        public Task<List<Item>> GetMenu();
+        public Task<List<Item>> GetMenuByCategory(string category);
+        public Task<List<Item>> GetOrderedItemsByAccountId(int accountId);
         public Task<double> GetTotalCartPriceByAccountId(int accountId);
-        public Task<List<MenuItem>> OrderItems(List<KeyValuePair<int, int>> orderItems, int accountId);
+        public Task<List<Item>> OrderItems(List<KeyValuePair<string, int>> orderItems, int accountId);
     }
 
     public class CustomerServiceImpl : ICustomerService
@@ -24,39 +24,39 @@ namespace OderApp.Services
             _menuRepository = menuRepository;
             _orderRepository = orderRepository;
         }
-        public async Task<List<MenuItem>> GetMenu()
+        public async Task<List<Item>> GetMenu()
         {
-            var result = new List<MenuItem>();
+            var result = new List<Item>();
             var menuEntities = await _menuRepository.GetAll();
             foreach (var menuEntity in menuEntities)
             {
 
-                result.Add(menuEntity.ConvertToMenuItem());
+                result.Add(menuEntity.ConvertToItemModel());
             }
 
             return result;
         }
 
-        public async Task<List<MenuItem>> GetMenuByCategory(string category)
+        public async Task<List<Item>> GetMenuByCategory(string category)
         {
-            var result = new List<MenuItem>();
-            var categoryId = (int)Enum.Parse(typeof(Category), category.ToLower());
+            var result = new List<Item>();
+            var categoryId = (int)Enum.Parse(typeof(Models.Category), category.ToLower());
             var menuEntities = await _menuRepository.GetMenuByCategory(categoryId);
             foreach (var menuEntity in menuEntities)
             {
-                result.Add(menuEntity.ConvertToMenuItem());
+                result.Add(menuEntity.ConvertToItemModel());
             }
 
             return result;
         }
 
-        public async Task<List<MenuItem>> GetOrderedItemsByAccountId(int accountId)
+        public async Task<List<Item>> GetOrderedItemsByAccountId(int accountId)
         {
-            var result = new List<MenuItem>();
+            var result = new List<Item>();
             var orderedItems = await _orderRepository.GetOrderedItemsByAccountId(accountId);
             foreach (var item in orderedItems)
             {
-                result.Add(item.ConvertToMenuItem());
+                result.Add(item.ConvertToItemModel());
             }
             return result;
 
@@ -73,15 +73,15 @@ namespace OderApp.Services
             return totalPrice;
         }
 
-        public async Task<List<MenuItem>> OrderItems(List<KeyValuePair<int, int>> orderItems, int accountId)
+        public async Task<List<Item>> OrderItems(List<KeyValuePair<string, int>> orderItems, int accountId)
         {
             var orderItemList = new List<OrderItem>();
             orderItems.ForEach(item => orderItemList.Add(new OrderItem(item.Key, item.Value)));
-            var result = new List<MenuItem>();
-            var orderMenuItemEntities = await _orderRepository.OrderItems(orderItemList, accountId);
-            foreach (var menuItemEntity in orderMenuItemEntities)
+            var result = new List<Item>();
+            var orderItemEntities = await _orderRepository.OrderItems(orderItemList, accountId);
+            foreach (var itemEntity in orderItemEntities)
             {
-                result.Add(menuItemEntity.ConvertToMenuItem());
+                result.Add(itemEntity.ConvertToItemModel());
             }
             return result;
         }

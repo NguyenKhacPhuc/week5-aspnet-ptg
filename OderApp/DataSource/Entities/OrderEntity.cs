@@ -2,7 +2,7 @@
 
 namespace OderApp.DataSource.Entities
 {
-    public class OrderEntiy
+    public class OrderEntity
     {
         [JsonPropertyName("accountId")]
         public int AccountId { get; set; }
@@ -11,7 +11,7 @@ namespace OderApp.DataSource.Entities
         [JsonPropertyName("orderItems")]
         public List<OrderItem> OrderItems { get; set; }
 
-        public OrderEntiy(int accountId, List<OrderItem> orderItems)
+        public OrderEntity(int accountId, List<OrderItem> orderItems)
         {
             AccountId = accountId;
             OrderItems = orderItems;
@@ -20,10 +20,10 @@ namespace OderApp.DataSource.Entities
 
     public class OrderItem
     {
-        public int ItemId { get; set; }
+        public string ItemId { get; set; }
         public int Quantity { get; set; }
 
-        public OrderItem(int itemId, int quantity)
+        public OrderItem(string itemId, int quantity)
         {
             ItemId = itemId;
             Quantity = quantity;

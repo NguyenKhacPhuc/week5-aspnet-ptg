@@ -54,11 +54,7 @@ namespace OderApp.DataSource.Dao
         public async Task Update(AccountEntity data)
         {
             List<AccountEntity> accounts = await _fileJsonHandler.readFile<List<AccountEntity>>(STORE_PATH_FILE);
-            var found = accounts.FirstOrDefault(item => item.Id == data.Id);
-            found = data;
-
             await _fileJsonHandler.writeFile(STORE_PATH_FILE, accounts);
-
         }
         
     }

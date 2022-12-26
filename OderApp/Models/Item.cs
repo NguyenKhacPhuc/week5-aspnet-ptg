@@ -1,32 +1,27 @@
-﻿using System;
-namespace OderApp.Models
+﻿namespace OderApp.Models
 {
     public class Item
     {
-        public string Id { set; get; }
-
-        public string Name { set; get; }
-
+        public string Id { get; set; }
+        public string Name { get; set; }
         public int Quantity { set; get; }
+        public double Price { get; set; }
+        public int Category { get; set; }
 
-        public double Price { set; get; }
-
-        public Catagory Catagory { set; get; }
-
-        public Item(string id, string name, int quantity, double price, Catagory catagory)
+        public Item(string id, string name, int quantity, double price, int category)
         {
             Id = id;
             Name = name;
             Quantity = quantity;
             Price = price;
-            Catagory = catagory;
+            Category = category;
         }
     }
 
-    public enum Catagory
+    public enum Category
     {
-        Food,
-        Drink
+        Food = 0,
+        Drink = 1
     }
 }
 

@@ -1,5 +1,4 @@
-﻿using System;
-namespace OderApp.DataSource.Entities
+﻿namespace OderApp.DataSource.Entities
 {
     public class UserEntity
     {
@@ -9,26 +8,21 @@ namespace OderApp.DataSource.Entities
 
         public string Email { get; set; }
 
-        public Role Role { get; set; }
+        public int Role { get; set; }
 
-        public UserEntity(string id, string name, string email, Role role)
+        public UserEntity(string id, string name, string email, int role)
         {
             Id = id;
             Name = name;
             Email = email;
             Role = role;
         }
-
-        public UserEntity()
-        {
-           
-        }
     }
 
     public enum Role
     {
-        Admin,
-        Customer
+        Admin = 0,
+        Customer = 1
     }
 }
 

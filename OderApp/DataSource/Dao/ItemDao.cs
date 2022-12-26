@@ -1,7 +1,4 @@
-﻿
-using OderApp.DataSource;
-using OderApp.DataSource.Dao;
-using OderApp.DataSource.Entities;
+﻿using OderApp.DataSource.Entities;
 
 namespace OderApp.DataSource.Dao
 {
@@ -28,11 +25,11 @@ namespace OderApp.DataSource.Dao
         {
             var items = (await _fileJsonHandler.readFile<IEnumerable<ItemEntity>>(STORE_PATH_FILE)).ToList();
             if (items.Any(p => p.Id.Equals(id))) {
-                var achivedItem = items.Find(p => p.Id.Equals(id));
-                if (achivedItem != null) {
-                    items.Remove(achivedItem);
+                var item = items.Find(p => p.Id.Equals(id));
+                if (item != null) {
+                    items.Remove(item);
                     await _fileJsonHandler.writeFile(STORE_PATH_FILE, items);
-                    return achivedItem;
+                    return item;
                 }
             }
             return null;
