@@ -8,6 +8,12 @@
             Password = password;
             Role = role;
         }
+        
+        public Account(string email, string password)
+        {
+            Email = email;
+            Password = password;
+        }
 
         public Account()
         {

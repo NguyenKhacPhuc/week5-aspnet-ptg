@@ -7,53 +7,58 @@ using System.Net;
 using System.Linq;
 using System.Diagnostics.Metrics;
 using System.Data;
+using OderApp.DataSource.Entities;
+using Role = OderApp.Models.Role;
 
 namespace OderApp.Services
 {
     public interface RegisterService
     {
 
-        public Task<Result<Account>> Register(string email, string password, string role);
+        public Task<Result<User>> Register(string name, string email, string password, int role);
 
 
     }
     public class RegisterServiceImpl : RegisterService
     {
         private readonly IAccountRepository _accountRepository;
+        private readonly IUserRepository _userRepository;
 
         private readonly string[] specialCharacter = new[] { "$", "@", "#" };
-        public RegisterServiceImpl(IAccountRepository accountRepository)
+        public RegisterServiceImpl(IAccountRepository accountRepository, IUserRepository userRepository)
         {
             _accountRepository = accountRepository;
+            _userRepository = userRepository;
 
         }
 
-        public async Task<Result<Account>> Register(string email, string password, string role)
+        public async Task<Result<User>> Register(string name, string email, string password, int role)
         {
             //Validate 
-            if (email != null && password != null && role != null)
+            if (name !=  null && email != null && password != null && role != null)
             {
                 // Validate email
                 if (!IsValidEmail(email))
                 {
                     Console.WriteLine("Email Invalid");
-                    return new Result<Account>(HttpStatusCode.Forbidden, null, "Email is in valid");
+                    return new Result<User>(HttpStatusCode.Forbidden, null, "Email is in valid");
                 }
 
                 // Validate password
                 if (!IsValidPassword(password))
                 {
                     Console.WriteLine("Password Invalid");
-                    return new Result<Account>(HttpStatusCode.Forbidden, null, "Password is in valid");
+                    return new Result<User>(HttpStatusCode.Forbidden, null, "Password is in valid");
                 }
 
-                await _accountRepository.addAccount(email: email, password: password, role: role);
+                await _userRepository.AddUser(new UserEntity(name:name, email: email, role: role));
 
-                return new Result<Account>(HttpStatusCode.OK, new Account(email, password, role), "Successfully Register");
+                //for testing
+                return new Result<User>(HttpStatusCode.OK, new User(name ,email, role), "Successfully Register");
 
             }
 
-            return new Result<Account>(HttpStatusCode.Forbidden, null, "Missing Information");
+            return new Result<User>(HttpStatusCode.Forbidden, null, "Missing Information");
         }
 
         bool IsValidEmail(string email)

@@ -10,12 +10,27 @@
 
         public int Role { set; get; }
 
+        public User()
+        {
+        }
+        public User(string name, string email, int role)
+        {
+            Id = generateId().ToString();
+            Name = name;
+            Email = email;
+            Role = role;
+        }
         public User(string id, string name, string email, int role)
         {
             Id = id;
             Name = name;
             Email = email;
             Role = role;
+        }
+        
+        static int generateId()
+        {
+            return new Random().Next();
         }
     }
 

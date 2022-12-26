@@ -43,7 +43,7 @@ internal class Program
         builder.Services.AddScoped<ConfigurationDao, DbConfigurationDao>();
         builder.Services.AddScoped<IOrderDao, OrderDaoImpl>();
         builder.Services.AddScoped<ItemDao, ItemDaoImpl>();
-        builder.Services.AddScoped<UserDao, UserDaoImpl>();
+        builder.Services.AddScoped<UserDao, DBUserDaoImpl>();
 
         builder.Services.AddDbContext<OrderDbContext>(options => options.UseMySQL(builder.Configuration.GetConnectionString("Order"))
            );
