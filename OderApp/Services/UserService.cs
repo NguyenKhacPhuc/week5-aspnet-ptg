@@ -1,8 +1,7 @@
-using System;
 using OderApp.Helper;
 using OderApp.Models;
 using OderApp.Repositories;
-using OderApp.Services;
+
 
 namespace OderApp.Services
 {
@@ -12,16 +11,18 @@ namespace OderApp.Services
     }
     public class UserServiceImpl : UserService
     {
-        private readonly IUserRepository _userRespository;
+        private readonly IUserRepository _userRepository;
 
         public UserServiceImpl(IUserRepository userRepository)
         {
-            _userRespository = userRepository;
+            _userRepository = userRepository;
         }
 
         public async Task<User> UpdateUser(User user)
         {
-            return (await _userRespository.UpdateUser(user.ConvertToUserEntity())).ConvertToUser();
+            return (await _userRepository.UpdateUser(user.ConvertToUserEntity()) ??
+                    throw new InvalidOperationException())
+                .ConvertToUserModel();
         }
     }
 }

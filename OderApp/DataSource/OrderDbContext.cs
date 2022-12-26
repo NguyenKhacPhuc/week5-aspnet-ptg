@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using OderApp.DataSource.Entities;
 
 namespace OderApp.DataSource
@@ -8,7 +7,7 @@ namespace OderApp.DataSource
 	{
 		public OrderDbContext(DbContextOptions<OrderDbContext> options):base(options){}
         public DbSet<AccountEntity> Account { get; set; }
-        public DbSet<MenuItemEntity> MenuItem { get; set; }
+        public DbSet<ItemEntity> Item { get; set; }
     }
 
 }

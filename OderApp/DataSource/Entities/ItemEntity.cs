@@ -3,29 +3,24 @@
     public class ItemEntity
     {
         public string Id { get; set; }
-
         public string Name { get; set; }
-
-        public int Quantity { get; set; }
-
         public double Price { get; set; }
-
-        public Catagory Catagory { get; set; }
-
-        public ItemEntity(string id, string name, int quantity, double price, Catagory catagory)
+        public int Quantity { get; set; }
+        public int Category { get; set; }
+        
+        public ItemEntity(string id, string name, int quantity, double price, int category)
         {
             Id = id;
             Name = name;
             Quantity = quantity;
             Price = price;
-            Catagory = catagory;
+            Category = category;
         }
-        public ItemEntity() { }
     }
 
-    public enum Catagory
+    public enum Category
     {
-        Food,
-        Drink
+        Food = 0,
+        Drink = 1
     }
 }

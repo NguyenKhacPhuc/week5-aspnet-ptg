@@ -1,5 +1,4 @@
-﻿using System;
-namespace OderApp.Models
+﻿namespace OderApp.Models
 {
     public class User
     {
@@ -9,9 +8,9 @@ namespace OderApp.Models
 
         public string Email { set; get; }
 
-        public Role Role { set; get; }
+        public int Role { set; get; }
 
-        public User(string id, string name, string email, Role role)
+        public User(string id, string name, string email, int role)
         {
             Id = id;
             Name = name;
@@ -22,8 +21,8 @@ namespace OderApp.Models
 
     public enum Role
     {
-        Admin,
-        Customer
+        Admin = 0,
+        Customer = 1
     }
 }
 

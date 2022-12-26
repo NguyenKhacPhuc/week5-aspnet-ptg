@@ -1,5 +1,6 @@
 using OderApp.DataSource.Entities;
 using OderApp.DataSource.Dao;
+
 namespace OderApp.Repositories
 {
     public interface IConfigurationRepository

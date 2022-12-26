@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using OderApp.Models;
 using OderApp.Services;
-using System.Net;
 
 namespace OderApp.Controllers
 {
@@ -9,11 +8,7 @@ namespace OderApp.Controllers
     [Route("[controller]")]
     public class ConfigurationController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
+        
         private readonly ILogger<ConfigurationController> _logger;
         private readonly ConfigurationService _configurationService;
 
@@ -28,7 +23,7 @@ namespace OderApp.Controllers
         {
             var result = await _configurationService.GetConfiguration();
 
-            return result.Data;
+            return result.Data ?? throw new InvalidOperationException();
         }
     }
 }

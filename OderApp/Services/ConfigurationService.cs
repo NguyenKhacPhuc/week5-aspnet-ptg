@@ -22,7 +22,7 @@ public class ConfigurationServiceImpl : ConfigurationService
     public async Task<Result<Configuration>> GetConfiguration()
     {
         var configurationEntity = await _configurationRepository.GetConfiguration();
-        var configuration = configurationEntity.ConvertToConfiguration();
+        var configuration = (configurationEntity ?? throw new InvalidOperationException()).ConvertToConfiguration();
         return new Result<Configuration>(HttpStatusCode.Accepted, configuration, "success");
     }
 }

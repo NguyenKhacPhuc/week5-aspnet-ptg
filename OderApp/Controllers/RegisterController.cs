@@ -25,10 +25,10 @@ namespace OderApp.Controllers
         {
             var result = await _registerService.Register(userName, password, role);
 
-            Account account = new Account();
+            var account = new Account();
             if (result.StatusCode == HttpStatusCode.OK)
             {
-                account = result.Data;
+                account = result.Data ?? throw new InvalidOperationException();
             }
 
             return account;
