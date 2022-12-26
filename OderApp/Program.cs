@@ -40,7 +40,7 @@ internal class Program
         //Add DAO Depedency
         builder.Services.AddScoped<AccountDao, DBAccountDaoImpl>();
         builder.Services.AddScoped<MenuDao, MenuDaoImpl>();
-        builder.Services.AddScoped<ConfigurationDao, ConfigurationDaoImpl>();
+        builder.Services.AddScoped<ConfigurationDao, DbConfigurationDao>();
         builder.Services.AddScoped<IOrderDao, OrderDaoImpl>();
         builder.Services.AddScoped<ItemDao, ItemDaoImpl>();
         builder.Services.AddScoped<UserDao, UserDaoImpl>();

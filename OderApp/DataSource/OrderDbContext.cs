@@ -8,6 +8,7 @@ namespace OderApp.DataSource
 		public OrderDbContext(DbContextOptions<OrderDbContext> options):base(options){}
         public DbSet<AccountEntity> Account { get; set; }
         public DbSet<ItemEntity> Item { get; set; }
+        public DbSet<ConfigurationEntity> Configuration { get; set; }
     }
 
 }
