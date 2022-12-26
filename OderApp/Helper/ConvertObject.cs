@@ -17,6 +17,15 @@ namespace OderApp.Helper
                 accountEntity.Role
             );
         }
+        
+        public static AccountEntity ConvertToAccountEntity(this Account account)
+        {
+            return new AccountEntity(
+                account.Email,
+                account.Password,
+                account.Role
+            );
+        }
 
         public static Configuration ConvertToConfiguration(this ConfigurationEntity configurationEntity)
         {

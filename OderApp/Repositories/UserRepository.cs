@@ -6,6 +6,7 @@ namespace OderApp.Repositories
     public interface IUserRepository
     {
         public Task<UserEntity?> UpdateUser(UserEntity user);
+        public Task AddUser(UserEntity user);
     }
 
     public class UserRepositoryImpl : IUserRepository
@@ -20,6 +21,11 @@ namespace OderApp.Repositories
         public async Task<UserEntity?> UpdateUser(UserEntity user)
         {
             return await _userDao.UpdateUser(user);
+        }
+        
+        public async Task AddUser(UserEntity user)
+        { 
+            await _userDao.AddUser(user);
         }
     }
 }

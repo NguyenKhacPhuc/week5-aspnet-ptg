@@ -5,6 +5,8 @@ namespace OderApp.DataSource.Dao
     public interface UserDao
     {
         public Task<UserEntity?> UpdateUser(UserEntity data);
+
+        public Task AddUser(UserEntity data);
     }
 
     public class UserDaoImpl : UserDao
@@ -30,6 +32,11 @@ namespace OderApp.DataSource.Dao
             }
 
             return null;
+        }
+
+        public Task AddUser(UserEntity data)
+        {
+            throw new NotImplementedException();
         }
     }
 }
