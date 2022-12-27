@@ -12,7 +12,7 @@ namespace OderApp.Services
 
         public Task<Item?> UpdateItem(Item item);
 
-        public Task<Item?> DeleteItem(string itemId);
+        public Task<Item?> DeleteItem(string itemId, bool isClearAll);
     }
 
     public class ItemServiceImpl : ItemService
@@ -31,9 +31,9 @@ namespace OderApp.Services
                 .ConvertToItemModel();
         }
 
-        public async Task<Item?> DeleteItem(string itemId)
+        public async Task<Item?> DeleteItem(string itemId, bool isClearAll)
         {
-            return (await _itemRepository.DeleteItem(itemId) ??
+            return (await _itemRepository.DeleteItem(itemId, isClearAll) ??
                     throw new InvalidOperationException())
                 .ConvertToItemModel();
         }

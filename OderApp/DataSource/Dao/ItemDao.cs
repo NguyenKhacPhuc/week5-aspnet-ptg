@@ -7,7 +7,7 @@ namespace OderApp.DataSource.Dao
         public Task<ItemEntity?> Insert(ItemEntity data);
         public Task<List<ItemEntity>> GetAll();
         public Task<ItemEntity?> Update(ItemEntity data);
-        public Task<ItemEntity?> Delete(string id);
+        public Task<ItemEntity?> Delete(string id, bool isClearAll);
     }
 
     public class ItemDaoImpl : ItemDao
@@ -21,7 +21,7 @@ namespace OderApp.DataSource.Dao
             _fileJsonHandler = fileJsonHandler;
         }
 
-        public async Task<ItemEntity?> Delete(string id)
+        public async Task<ItemEntity?> Delete(string id, bool isClearAll = false)
         {
             var items = (await _fileJsonHandler.readFile<IEnumerable<ItemEntity>>(STORE_PATH_FILE)).ToList();
             if (items.Any(p => p.Id.Equals(id))) {

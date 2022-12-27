@@ -9,6 +9,7 @@ namespace OderApp.DataSource
         public DbSet<AccountEntity> Account { get; set; }
         public DbSet<ItemEntity> Item { get; set; }
         public DbSet<ConfigurationEntity> Configuration { get; set; }
+        public DbSet<UserEntity> User { get; set; }
     }
 
 }

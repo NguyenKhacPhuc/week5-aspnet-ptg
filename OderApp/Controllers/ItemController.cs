@@ -37,9 +37,9 @@ namespace OderApp.Controllers
         }
 
         [HttpDelete(Name = "DeleteItem")]
-        public async Task<Item?> DeleteItem(string itemId)
+        public async Task<Item?> DeleteItem(string itemId, bool isClearAll)
         {
-            return await _itemService.DeleteItem(itemId);
+            return await _itemService.DeleteItem(itemId, isClearAll);
         }
     }
 }
