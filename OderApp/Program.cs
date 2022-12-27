@@ -20,7 +20,7 @@ internal class Program
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
-        //Add Repository Depedency
+        //Add Repository Dependency
         builder.Services.AddScoped<IAccountRepository, AccountRepositoryImpl>();
         builder.Services.AddScoped<IConfigurationRepository, ConfigurationRepositoryImpl>();
         builder.Services.AddScoped<IMenuRepository, MenuRepositoryImpl>();
@@ -28,7 +28,7 @@ internal class Program
         builder.Services.AddScoped<IItemRepository, ItemRepositoryImpl>();
         builder.Services.AddScoped<IUserRepository, UserRepositoryImpl>();
 
-        // Add Service Depedency
+        // Add Service Dependency
         builder.Services.AddScoped<LoginService, LoginServiceImpl>();
         builder.Services.AddScoped<ConfigurationService, ConfigurationServiceImpl>();
         builder.Services.AddScoped<ICustomerService, CustomerServiceImpl>();
@@ -37,13 +37,13 @@ internal class Program
         builder.Services.AddScoped<UserService, UserServiceImpl>();
 
         builder.Services.AddScoped<FileJsonHandler, FileJsonHandlerImpl>();
-        //Add DAO Depedency
+        //Add DAO Dependency
         builder.Services.AddScoped<AccountDao, DBAccountDaoImpl>();
         builder.Services.AddScoped<MenuDao, MenuDaoImpl>();
         builder.Services.AddScoped<ConfigurationDao, DbConfigurationDao>();
         builder.Services.AddScoped<IOrderDao, OrderDaoImpl>();
-        builder.Services.AddScoped<ItemDao, ItemDaoImpl>();
-        builder.Services.AddScoped<UserDao, UserDaoImpl>();
+        builder.Services.AddScoped<ItemDao, DBItemDaoImpl>();
+        builder.Services.AddScoped<UserDao, DBUserDaoImpl>();
 
         builder.Services.AddDbContext<OrderDbContext>(options => options.UseMySQL(builder.Configuration.GetConnectionString("Order"))
            );

@@ -9,7 +9,7 @@ namespace OderApp.Repositories
 
         public Task<ItemEntity?> UpdateItem(ItemEntity item);
 
-        public Task<ItemEntity?> DeleteItem(string itemId);
+        public Task<ItemEntity?> DeleteItem(string itemId, bool isClearAll);
 
         public Task<ItemEntity?> AddItem(ItemEntity item);
     }
@@ -28,9 +28,9 @@ namespace OderApp.Repositories
             return await _itemDao.Insert(item);
         }
 
-        public async Task<ItemEntity?> DeleteItem(string itemId)
+        public async Task<ItemEntity?> DeleteItem(string itemId, bool isClearAll)
         {
-            return await _itemDao.Delete(itemId);
+            return await _itemDao.Delete(itemId, isClearAll);
         }
 
         public async Task<List<ItemEntity>> GetAllItem()
