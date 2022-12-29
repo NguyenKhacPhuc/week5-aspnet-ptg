@@ -19,27 +19,31 @@ namespace OderApp.Controllers
         }
 
         [HttpPut(Name = "AddItem")]
-        public async Task<Item?> AddItem(Item item)
+        public async Task<IActionResult> AddItem(Item item)
         {
-            return await _itemService.AddItem(item);
+            await _itemService.AddItem(item);
+            return new OkObjectResult(item);
         }
 
         [HttpPost(Name = "UpdateItem")]
-        public async Task<Item?> UpdateItem(Item item)
+        public async Task<IActionResult> UpdateItem(Item item)
         {
-            return await _itemService.UpdateItem(item);
+            await _itemService.UpdateItem(item);
+            return new OkObjectResult(item);
         }
 
         [HttpGet(Name = "GetAllItem")]
-        public async Task<List<Item>> GetAllItem()
+        public async Task<IActionResult> GetAllItem()
         {
-            return await _itemService.GetAllItem();
+            var result = await _itemService.GetAllItem();
+            return new OkObjectResult(result);
         }
 
         [HttpDelete(Name = "DeleteItem")]
-        public async Task<Item?> DeleteItem(string itemId)
+        public async Task<IActionResult> DeleteItem(string itemId)
         {
-            return await _itemService.DeleteItem(itemId);
+            await _itemService.DeleteItem(itemId);
+            return new OkObjectResult(itemId);
         }
     }
 }

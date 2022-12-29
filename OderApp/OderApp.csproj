@@ -30,9 +30,6 @@
     <None Remove="DataSource\Database\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DataSource\Database\" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Remove="DataSource\Entities\MenuItemEntity.cs" />
     <Compile Remove="Models\AccountResponse.cs" />
   </ItemGroup>

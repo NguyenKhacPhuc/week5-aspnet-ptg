@@ -1,18 +1,19 @@
 ﻿using OderApp.Helper;
 using OderApp.Models;
 using OderApp.Repositories;
+using System.Net;
 
 namespace OderApp.Services
 {
     public interface ItemService
     {
-        public Task<List<Item>> GetAllItem();
+        public Task<Result<List<Item>>> GetAllItem();
 
-        public Task<Item?> AddItem(Item item);
+        public Task<Result<Item>> AddItem(Item item);
 
-        public Task<Item?> UpdateItem(Item item);
+        public Task<Result<Item>> UpdateItem(Item item);
 
-        public Task<Item?> DeleteItem(string itemId);
+        public Task<Result<string>> DeleteItem(string itemId);
     }
 
     public class ItemServiceImpl : ItemService
@@ -24,31 +25,28 @@ namespace OderApp.Services
             _itemRepository = itemRepository;
         }
 
-        public async Task<Item?> AddItem(Item item)
+        public async Task<Result<Item>> AddItem(Item item)
         {
-            return (await _itemRepository.AddItem(item.ConvertToItemEntity()) ??
-                    throw new InvalidOperationException())
-                .ConvertToItemModel();
+            await _itemRepository.AddItem(item.ConvertToItemEntity());
+            return new Result<Item>(HttpStatusCode.OK, item, null);
         }
 
-        public async Task<Item?> DeleteItem(string itemId)
+        public async Task<Result<string>> DeleteItem(string itemId)
         {
-            return (await _itemRepository.DeleteItem(itemId) ??
-                    throw new InvalidOperationException())
-                .ConvertToItemModel();
+            await _itemRepository.DeleteItem(itemId);
+            return new Result<string>(HttpStatusCode.OK, itemId, null);
         }
 
-        public async Task<List<Item>> GetAllItem()
+        public async Task<Result<List<Item>>> GetAllItem()
         {
             var listItem = (await _itemRepository.GetAllItem()).ConvertAll(item => item.ConvertToItemModel());
-            return listItem;
+            return new Result<List<Item>>(HttpStatusCode.OK, listItem, null); ;
         }
 
-        public async Task<Item?> UpdateItem(Item item)
+        public async Task<Result<Item>> UpdateItem(Item item)
         {
-            return (await _itemRepository.UpdateItem(item.ConvertToItemEntity()) ??
-                    throw new InvalidOperationException())
-                .ConvertToItemModel();
+            await _itemRepository.UpdateItem(item.ConvertToItemEntity());
+            return new Result<Item>(HttpStatusCode.OK, item, null);
         }
     }
 }

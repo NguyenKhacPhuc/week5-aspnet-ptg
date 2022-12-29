@@ -7,11 +7,11 @@ namespace OderApp.Repositories
     {
         public Task<List<ItemEntity>> GetAllItem();
 
-        public Task<ItemEntity?> UpdateItem(ItemEntity item);
+        public Task UpdateItem(ItemEntity item);
 
-        public Task<ItemEntity?> DeleteItem(string itemId);
+        public Task DeleteItem(string itemId);
 
-        public Task<ItemEntity?> AddItem(ItemEntity item);
+        public Task AddItem(ItemEntity item);
     }
 
     public class ItemRepositoryImpl : IItemRepository
@@ -23,14 +23,14 @@ namespace OderApp.Repositories
             _itemDao = itemDao;
         }
 
-        public async Task<ItemEntity?> AddItem(ItemEntity item)
+        public async Task AddItem(ItemEntity item)
         {
-            return await _itemDao.Insert(item);
+            await _itemDao.Insert(item);
         }
 
-        public async Task<ItemEntity?> DeleteItem(string itemId)
+        public async Task DeleteItem(string itemId)
         {
-            return await _itemDao.Delete(itemId);
+            await _itemDao.Delete(itemId);
         }
 
         public async Task<List<ItemEntity>> GetAllItem()
@@ -38,9 +38,9 @@ namespace OderApp.Repositories
             return await _itemDao.GetAll();
         }
 
-        public async Task<ItemEntity?> UpdateItem(ItemEntity item)
+        public async Task UpdateItem(ItemEntity item)
         {
-            return await _itemDao.Update(item);
+            await _itemDao.Update(item);
         }
     }
 }
