@@ -2,17 +2,15 @@
 {
     public class Item
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
-        public int Quantity { set; get; }
         public double Price { get; set; }
         public int Category { get; set; }
 
-        public Item(string id, string name, int quantity, double price, int category)
+        public Item(int id, string name, double price, int category)
         {
             Id = id;
             Name = name;
-            Quantity = quantity;
             Price = price;
             Category = category;
         }

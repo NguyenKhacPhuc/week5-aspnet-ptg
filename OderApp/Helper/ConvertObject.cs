@@ -32,7 +32,6 @@ namespace OderApp.Helper
             return new Item(
                 itemEntity.Id,
                 itemEntity.Name,
-                itemEntity.Quantity,
                 itemEntity.Price,
                 itemEntity.Category
             );
@@ -43,7 +42,6 @@ namespace OderApp.Helper
             return new ItemEntity(
                 item.Id,
                 item.Name,
-                item.Quantity,
                 item.Price,
                 item.Category
             );

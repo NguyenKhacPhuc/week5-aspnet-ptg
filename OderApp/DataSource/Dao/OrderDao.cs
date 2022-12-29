@@ -25,10 +25,7 @@ namespace OderApp.DataSource.Dao
             var orderItems = orderStorage.Find(oderEntity => oderEntity.AccountId == accountId)?.OrderItems;
             if (orderItems == null || orderItems.Count == 0) return new List<ItemEntity>();
             var menu = await _menuDao.GetAll();
-            return menu.FindAll(menuEntity => orderItems
-                .Select(obj => obj.ItemId)
-                .ToList().
-                Contains(menuEntity.Id));
+            return new List<ItemEntity>();
         }
 
         public async Task<List<ItemEntity>> OrderItems(List<OrderItem> orderItems, int accountId)
